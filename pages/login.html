@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CookPAL</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <div id="login-box">
-        <div class="left">
-            <h1>Sign Up</h1>
 
-            <input type="text" id="email" name="email" placeholder="E-mail"/>
-            <input type="password" id="password" name="password" placeholder="Password"/>
-
-            <button id="saveData" name="signup_submit">Sign In</button>
+<body class="login-bg">
+    <!-- form box -->
+    <div class="form-box">
+        <img src="../assets/cookpal.png">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="loginBtn()">Log In</button>
+            <button type="button" class="toggle-btn" onclick="registerBtn()">Register</button>
         </div>
-        <div>OR</div>
-
-        <div>
-            <span class="loginwith">Sign in with social network</span>
-            <button class="social-signin google" id="login">Log In With Google</button>
+        <div class="social-icons">
+            <i id="login" class="fa-brands fa-google fa-2x"></i>
+            <i class="fa-brands fa-facebook fa-2x"></i>
         </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="input-group">
+            <input type="email" class="input-field" placeholder="E-mail" required>
+            <input type="password" id="password" class="input-field" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        
+        <!-- Register Form -->
+        <form id="register-form" class="input-group">
+            <input type="text" class="input-field" placeholder="Your Name" required>
+            <input type="email" class="input-field" placeholder="Your E-mail" required>
+            <input type="password" class="input-field" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
     </div>
-    
 </body>
+
+<script src="../scripts/login.js"></script>
 
 <script type="module">
     // Import the functions you need from the SDKs you need
@@ -32,17 +52,17 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-  
+
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyDDH3bFZb8rIP9l1sQ8aBZHCQbhTgn3wOk",
-      authDomain: "cookpal-a47f7.firebaseapp.com",
-      projectId: "cookpal-a47f7",
-      storageBucket: "cookpal-a47f7.appspot.com",
-      messagingSenderId: "568342145857",
-      appId: "1:568342145857:web:00a747e32b4c59746b8fc0"
+        apiKey: "AIzaSyDDH3bFZb8rIP9l1sQ8aBZHCQbhTgn3wOk",
+        authDomain: "cookpal-a47f7.firebaseapp.com",
+        projectId: "cookpal-a47f7",
+        storageBucket: "cookpal-a47f7.appspot.com",
+        messagingSenderId: "568342145857",
+        appId: "1:568342145857:web:00a747e32b4c59746b8fc0"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -50,27 +70,28 @@
 
     login.addEventListener('click', (e) => {
         signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
 
-            alert(user.displayName);
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-            alert(errorMessage);
-        });
+                alert(user.displayName);
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+                alert(errorMessage);
+            });
     });
-  </script>
+</script>
+
 </html>
