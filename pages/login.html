@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 </head>
 
 <body class="login-bg">
-    <div class="navbar navbar-default">
+    <!-- <div class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"
                 aria-expanded="false" aria-controls="navbar">
@@ -29,7 +28,7 @@
             </ul>
         </div>
     </div>
-    <br>
+    <br> -->
     <!-- form box -->
     <div class="form-box">
         <img src="../assets/cookpal.png">
@@ -52,18 +51,18 @@
             <input type="password" id="login-password" name="login-password" class="input-field"
                 placeholder="Enter Password" required>
             <input type="checkbox" name="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
-            <button type="submit" id="loginBtn" name="loginBtn" class="submit-btn">Log In</button>
+            <button type="button" id="loginBtn" name="loginBtn" class="submit-btn">Log In</button>
         </form>
 
         <!-- Register Form -->
         <form id="register-form" name="register-form" class="input-group" method="post" action="#"
             enctype="multipart/form-data">
-            <input type="register-email" id="register-email" name="email" class="input-field" placeholder="E-mail" autocomplete="email"
+            <input type="email" id="register-email" name="register-email" class="input-field" placeholder="E-mail" autocomplete="email"
                 required>
-            <input type="register-password" id="register-password" name="password" class="input-field" placeholder="Enter Password"
+            <input type="password" id="register-password" name="register-password" class="input-field" placeholder="Enter Password"
                 required>
             <input type="checkbox" name="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
-            <button type="submit" id="registerBtn" name="registerBtn" class="submit-btn">Register</button>
+            <button type="button" id="registerBtn" name="registerBtn" class="submit-btn">Register</button>
         </form>
     </div>
 </body>
@@ -90,7 +89,7 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const auth = getAuth();
     const provider = new GoogleAuthProvider(app);
     console.log(app);
 
