@@ -50,7 +50,7 @@
             <input type="email" id="login-email" name="login-email" class="input-field" placeholder="E-mail" autocomplete="email" required>
             <input type="password" id="login-password" name="login-password" class="input-field"
                 placeholder="Enter Password" required>
-            <input type="checkbox" name="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
+            <input type="checkbox" name="checkbox" class="check-box" onclick="showPass(this, 'login-password')"><span>Show Password</span>
             <button type="button" id="loginBtn" name="loginBtn" class="submit-btn">Log In</button>
         </form>
 
@@ -61,7 +61,7 @@
                 required>
             <input type="password" id="register-password" name="register-password" class="input-field" placeholder="Enter Password"
                 required>
-            <input type="checkbox" name="checkbox" class="check-box" onclick="showPass()"><span>Show Password</span>
+            <input type="checkbox" name="checkbox" class="check-box" onclick="showPass(this, 'register-password')"><span>Show Password</span>
             <button type="button" id="registerBtn" name="registerBtn" class="submit-btn">Register</button>
         </form>
     </div>

@@ -14,9 +14,9 @@ function loginBtn() {
     z.style.left = "0px";
 }
 
-function showPass() {
-    var x = document.getElementById("password");
-    if (x.type === "password") {
+function showPass(checkbox, id) {
+    var x = document.getElementById(id);
+    if (checkbox.checked) {
         x.type = "text";
     } else {
         x.type = "password";
