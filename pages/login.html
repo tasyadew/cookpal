@@ -12,7 +12,7 @@
 </head>
 
 <body class="login-bg">
-    <!-- <div class="navbar navbar-default">
+    <div class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"
                 aria-expanded="false" aria-controls="navbar">
@@ -28,7 +28,7 @@
             </ul>
         </div>
     </div>
-    <br> -->
+    <br>
     <!-- form box -->
     <div class="form-box">
         <img src="../assets/cookpal.png">
@@ -106,6 +106,8 @@
                 alert(user.displayName);
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
+
+                document.getElementById('logout').style.display = 'block';
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
