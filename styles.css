@@ -195,8 +195,7 @@ li a:hover {
 
 /* RECIPE CARDS */
 
-.card-container,
-.category-container {
+.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -212,6 +211,7 @@ li a:hover {
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: rgba(243, 243, 243, 0.8);
   cursor: pointer;
 }
 
@@ -277,6 +277,60 @@ li a:hover {
 .fa-regular.fa-comment,
 .fa-regular.fa-heart {
   margin-right: 5px;
+}
+
+/* SEARCH BOX */
+.meal-search{
+  margin: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.meal-search-box{
+  margin: 1.2rem 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.search-control,
+.search-btn{
+  width: 100%;
+}
+
+.search-control{
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: 0;
+  border: 1px solid #84BD00;
+  color: #333;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.search-control::placeholder{
+  color: #666;
+}
+
+.search-btn{
+  width: 55px;
+  height: 55px;
+  font-size: 1.8rem;
+  background: #84BD00;
+  color: #333;
+  border: none;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.search-btn:hover{
+  background: #84BD00;
+}
+
+.search-btn i{
+  color: #fff;
 }
 
 /* RESPONSIVENESS */

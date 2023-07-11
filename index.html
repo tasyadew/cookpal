@@ -10,7 +10,6 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="./scripts/app.js"></script>
 </head>
 
 <body>
@@ -23,11 +22,20 @@
 
 
         <section id="browse">
-            <h1>What are you craving now?</h1>
+            <div class="meal-search">
+                <h1>Find Your Perfect Dish!</h1>
+                <div class="meal-search-box">
+                    <input type="text" class="search-control" placeholder="Search recipes..." id="search-input">
+                    <button type="submit" class="search-btn btn" id="search-btn">
+                        <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+
         </section>
 
-        <section id="featured">
-            <h1>Featured Recipe</h1>
+        <section id="recipe">
+            <h1>Browse Recipes</h1>
 
             <!-- Recipe Card (Create 4 Featured recipe by random) -->
             <div class="card-container">
@@ -51,28 +59,14 @@
             </div>
         </section>
 
-        <section id="category">
-            <h2>Browse By Category</h2>
-
-            <!-- Category Card-->
-            <div class="category-container">
-                <div class="card">
-                    <div class="card__img">
-                        <img src="./assets/Lime.png" alt="Avatar">
-                    </div>
-                    <div class="card__info">
-                        <h2>Food Category</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <footer>
             <div>
                 <p>© CookPAL 2023. All Rights Reserved</p>
             </div>
         </footer>
 </body>
+
+<script src="./js/main.js"></script>
 
 <!-- Firebase Auth Module -->
 <script type="module">
