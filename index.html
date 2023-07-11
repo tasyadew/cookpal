@@ -57,6 +57,14 @@
             </div>
         </section>
 
+        <div>
+            <p id="NumLike52772">0</p>
+            <button id="Like52772">Like52772</button>
+            
+            <p id="NumFav52772">0</p>
+            <button id="Fav52772">Fav52772</button>
+        </div>
+
         <footer>
             <div>
                 <p>© CookPAL 2023. All Rights Reserved</p>
@@ -69,8 +77,12 @@
 <!-- Firebase Auth Module -->
 <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getFirestore, collection, doc, getDoc, arrayUnion, arrayRemove }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -82,11 +94,11 @@
         appId: "1:568342145857:web:00a747e32b4c59746b8fc0"
     };
 
-    const login = () => {
+    const login = ()=>{
         window.location.href = './pages/login.html';
     };
 
-    const logout = () => {
+    const logout = ()=>{
         signOut(auth)
             .then(() => {
                 // User signed out successfully
@@ -101,19 +113,33 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
+    const db = getFirestore(app);
     console.log(app);
+    let currentUser = null;
+    let username = "N/A";
     
-    let email = document.getElementById("email");
+    let welcome = document.getElementById("welcome");
     onAuthStateChanged(auth, (user) => {
         // Check if button already exists and remove it
         let authButton = document.getElementById("authButton");
         if (authButton) authButton.remove();
 
-        if (user) email.innerHTML = user.email;
-        else email.innerHTML = "Please sign in!";
+        // If the user is logged in
+        if (user) {
+            currentUser = user;
+            // Check if account data exists
+            const docRef = doc(db, "user", user.uid);
+            getDoc(docRef).then((docSnap)=>{
+                if (docSnap.exists()) username = docSnap.data()['username'];
+
+                welcome.innerHTML = "Welcome, " + username + "!";
+            });
+        } else {
+            welcome.innerHTML = "Please sign in!";
+        }
         
         // Create button based on if user is already signed in or not
-        email.insertAdjacentElement("afterend", createAuthButton(user));
+        welcome.insertAdjacentElement("afterend", createAuthButton(user));
     });
 
     function createAuthButton(user){
@@ -132,6 +158,22 @@
 
         return authButton;
     }
-    
+
+    document.getElementById("Like52772").addEventListener("click", (currentUser)=>{
+        // Check if already liked
+        const docRef = doc(db, "user", currentUser.uid);
+        getDoc(docRef).then((docSnap, docRef)=>{
+            if (docSnap.data()['like']['52772']){
+                updateDoc(docRef, {
+                    like: arrayRemove("52272")
+                });
+            } else {
+                updateDoc(docRef, {
+                    like: arrayUnion("52272")
+                });
+            }
+            document.getElementById("NumLike52772").innerHTML = (docSnap.data()['like']['52772']);
+        });
+    });
 </script>
 </html>
