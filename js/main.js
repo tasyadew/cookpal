@@ -5,5 +5,4 @@ $(document).ready(function() {
       var clonedCard = originalRecipeCard.clone();
       $(".card-container").append(clonedCard);
     }
-
   });
