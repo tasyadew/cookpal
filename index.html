@@ -6,30 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CookPAL</title>
     <link rel="stylesheet" href="./styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="./scripts/api.js"></script>
 </head>
 
 <body>
-
-
+        <nav>
+            <p id="email"></p>
+        </nav>
         <section id="banner">
-            <h1>CookPAL</h1>
-            <p>this will randomly display recipe</p>
+            
         </section>
 
 
-        <section id="community">
-            <p>This is where user can interact with community</p>
+        <section id="browse">
+            <h2>What are you craving now?</h2>
         </section>
 
-        <section id="recipe">
-            <h2>Browse Recipes</h2>
-            <p>This is where you can look for recipe</p>
+        <section id="featured">
+            <h2>Featured Recipe</h2>
+        </section>
+
+        <section id="category">
+            <h2>Browse By Category</h2>
         </section>
 
         <footer>
-            <p>This is footer</p>
+            <div>
+                <p>© CookPAL 2023. All Rights Reserved</p>
+            </div>
         </footer>
 </body>
 
+<!-- Firebase Auth Module -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDDH3bFZb8rIP9l1sQ8aBZHCQbhTgn3wOk",
+        authDomain: "cookpal-a47f7.firebaseapp.com",
+        projectId: "cookpal-a47f7",
+        storageBucket: "cookpal-a47f7.appspot.com",
+        messagingSenderId: "568342145857",
+        appId: "1:568342145857:web:00a747e32b4c59746b8fc0"
+    };
+
+    const login = () => {
+        window.location.href = './pages/login.html';
+    };
+
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                // User signed out successfully
+                console.log("User signed out");
+            })
+            .catch((error) => {
+                // An error occurred while signing out
+                console.log("Error signing out:", error);
+            });
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    console.log(app);
+    
+    let email = document.getElementById("email");
+    onAuthStateChanged(auth, (user) => {
+        // Check if button already exists and remove it
+        let authButton = document.getElementById("authButton");
+        if (authButton) authButton.remove();
+
+        if (user) email.innerHTML = user.email;
+        else email.innerHTML = "Please sign in!";
+        
+        // Create button based on if user is already signed in or not
+        email.insertAdjacentElement("afterend", createAuthButton(user));
+    });
+
+    function createAuthButton(user){
+        let authButton = document.createElement("button");
+        authButton.id = "authButton";
+
+        if (user){
+            //<button id="authButton" onclick="logout()">Log Out</button>
+            authButton.innerHTML = "Log Out";
+            authButton.addEventListener("click", logout);
+        } else {
+            //<button id="authButton" onclick="login()">Log In</button>
+            authButton.innerHTML = "Log In";
+            authButton.addEventListener("click", login);
+        }
+
+        return authButton;
+    }
+    
+</script>
 </html>

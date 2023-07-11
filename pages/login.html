@@ -12,24 +12,6 @@
 </head>
 
 <body class="login-bg">
-    <div class="navbar navbar-default">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"
-                aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
-            </ul>
-        </div>
-    </div>
-    <br>
-    <!-- form box -->
     <div class="form-box">
         <img src="../assets/cookpal.png">
         <div class="button-box">
@@ -69,10 +51,12 @@
 
 <script src="../scripts/login.js"></script>
 
+<!-- Firebase Auth Module -->
 <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut }
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword }
         from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -92,6 +76,9 @@
     const auth = getAuth();
     const provider = new GoogleAuthProvider(app);
     console.log(app);
+    onAuthStateChanged(auth, (user) => {
+        if (user) window.location.href = '../index.html';
+    });
 
     //----- Continue with Google
     googleLogin.addEventListener('click', (e) => {
@@ -104,10 +91,6 @@
                 const user = result.user;
 
                 alert(user.displayName);
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-
-                document.getElementById('logout').style.display = 'block';
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -156,8 +139,6 @@
                 const user = userCredential.user;
                 console.log(user);
                 alert(user.email + " Login successfully!!!");
-                document.getElementById('logout').style.display = 'block';
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -167,20 +148,6 @@
             });
     });
     //----- End
-
-    //----- Logout code start	  
-    document.getElementById("logout").addEventListener("click", function () {
-        signOut(auth).then(() => {
-            // Sign-out successful.
-            console.log('Sign-out successful.');
-            alert('Sign-out successful.');
-            document.getElementById('logout').style.display = 'none';
-        }).catch((error) => {
-            // An error happened.
-            console.log('An error happened.');
-        });
-    });
-	  //----- End
 </script>
 
 </html>

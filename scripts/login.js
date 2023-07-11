@@ -6,12 +6,14 @@ function registerBtn() {
     x.style.left = "-400px";
     y.style.left = "50px";
     z.style.left = "110px";
+    z.style.width = "130px";
 }
 
 function loginBtn() {
     x.style.left = "50px";
     y.style.left = "450px";
     z.style.left = "0px";
+    z.style.width = "105px";
 }
 
 function showPass(checkbox, id) {
