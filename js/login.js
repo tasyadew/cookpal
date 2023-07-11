@@ -16,12 +16,21 @@ function loginBtn() {
     z.style.width = "105px";
 }
 
-
-function showPass(checkbox, id) {
+function showPass(checkbox, id, id2) {
     var x = document.getElementById(id);
     if (checkbox.checked) {
         x.type = "text";
     } else {
         x.type = "password";
+    }
+
+    // For "Reenter password" (Optional)
+    if (id2) {
+        var x2 = document.getElementById(id2);
+        if (checkbox.checked) {
+            x2.type = "text";
+        } else {
+            x2.type = "password";
+        }
     }
 }
