@@ -10,7 +10,7 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="./scripts/api.js"></script>
+    <script src="./scripts/app.js"></script>
 </head>
 
 <body>
@@ -18,20 +18,53 @@
             <p id="email"></p>
         </nav>
         <section id="banner">
-            
+
         </section>
 
 
         <section id="browse">
-            <h2>What are you craving now?</h2>
+            <h1>What are you craving now?</h1>
         </section>
 
         <section id="featured">
-            <h2>Featured Recipe</h2>
+            <h1>Featured Recipe</h1>
+
+            <!-- Recipe Card (Create 4 Featured recipe by random) -->
+            <div class="card-container">
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/test.jpg" alt="Avatar">
+                        <div class="icons"><i class="fa-regular fa-bookmark fa-xl"></i></div>
+                    </div>
+                    <div class="card__info">
+                        <p>Food Category</p>
+                        <h2>Recipe Name</h2>
+                        <div class="card__footer">
+                            <div class="tags">Tags</div>
+                            <div class="icons">
+                                <div><i class="fa-regular fa-comment fa-xl"></i>0</div>
+                                <div><i class="fa-regular fa-heart fa-xl"></i>0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="category">
             <h2>Browse By Category</h2>
+
+            <!-- Category Card-->
+            <div class="category-container">
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/Lime.png" alt="Avatar">
+                    </div>
+                    <div class="card__info">
+                        <h2>Food Category</h2>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <footer>
