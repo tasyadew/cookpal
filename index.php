@@ -187,7 +187,7 @@
 
     function createAuthButton(user) {
         const login = () => {
-            window.location.href = './pages/login.html';
+            window.location.href = './pages/login.php';
         };
 
         const logout = () => {
@@ -315,6 +315,19 @@
 
         return cardContainer;
     }
+
+    function updateBannerContainer(name, category, imgurl) {
+        document.getElementById("bannerImg").src = imgurl;
+        document.getElementById("bannerRecipe").innerHTML = name;
+        document.getElementById("bannerCategory").innerHTML = category;
+    }
+    
+    // For banner random image on load
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(json => {
+            updateBannerContainer(json.meals[0].strMeal, json.meals[0].strCategory, json.meals[0].strMealThumb);
+        });
 
     loadRecipes("");
     let searchBar = document.getElementById("search-input");

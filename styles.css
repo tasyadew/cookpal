@@ -47,28 +47,6 @@ p {
     font-weight: 400;
 }
 
-button {
-  cursor: pointer;
-  padding: 10px 32px;
-  background: linear-gradient(to right, #84BD00, #C4D600);
-  box-shadow: 0 0 2px 2px rgba(196, 214, 0, 0.5);
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-}
-
-button:hover{
-  cursor: pointer;
-  padding: 10px 32px;
-  background: #333;
-  box-shadow: 0 0 2px 2px rgba(3, 3, 3, 0.5);
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-}
-
 
 
 /* NAVIGATION BAR */
@@ -122,6 +100,28 @@ button:hover{
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px 10px;
+}
+
+#authButton {
+  cursor: pointer;
+  padding: 10px 32px;
+  background: linear-gradient(to right, #84BD00, #C4D600);
+  box-shadow: 0 0 2px 2px rgba(196, 214, 0, 0.5);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+#authButton:hover{
+  cursor: pointer;
+  padding: 10px 32px;
+  background: #333;
+  box-shadow: 0 0 2px 2px rgba(3, 3, 3, 0.5);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
 }
 
 
@@ -503,7 +503,7 @@ footer{
 
 .icon-counter{
   margin-left: 8px;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .heart-icon,

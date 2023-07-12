@@ -94,7 +94,7 @@
             getDoc(docRef).then((docSnap)=>{
                 if (docSnap.exists()) {
                     console.log("Account data exist!");
-                    window.location.href = '../index.html';
+                    window.location.href = '../index.php';
                 } else {
                     console.log("Account data not found");
                 }
@@ -126,7 +126,7 @@
                             like: []
                         }).then(() => {
                             alert("Signed in successfully!!");
-                            window.location.href = '../index.html';
+                            window.location.href = '../index.php';
                         });
                     }
                 });
@@ -163,7 +163,7 @@
                 }).then(()=>{
                     console.log(user);
                     alert("Registration successfully!!");
-                    window.location.href = '../index.html';
+                    window.location.href = '../index.php';
                 });
             })
             .catch((error) => {

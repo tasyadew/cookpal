@@ -16,7 +16,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="left-items">
-                <a href="../index.html"><img src="../assets/cookpal.png" class="logo"></a>
+                <a href="../index.php"><img src="../assets/cookpal.png" class="logo"></a>
                 <div id="saved-recipe" class="navbar-item">Saved Recipe</div>
             </div>
             <div class="right-items">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="recipe__more">
-                <a href="../index.html">
+                <a href="../index.php">
                     <h2>Browse More Recipes</h2>
                 </a>
             </div>
