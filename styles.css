@@ -356,9 +356,11 @@ li a:hover {
 }
 
 .recipe-icon {
-    width: 10px;
-    height: 10px;
-    margin: 10px;
+    margin-left: 10px;
+}
+
+.heartRed {
+    color: red;
 }
 
 /* RESPONSIVENESS */
