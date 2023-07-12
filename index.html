@@ -18,7 +18,13 @@
             <div id="auth-container">
                 <div id="welcome-message" class="navbar-item"></div>
             <div>
+        <nav id="navbar">
+            <img src="./assets/cookpal.png" width="10%" height="10%" class="navbar-item">
+            <div id="auth-container">
+                <div id="welcome-message" class="navbar-item"></div>
+            <div>
         </nav>
+
 
         <section id="banner">
         </section>
@@ -38,7 +44,16 @@
         <section id="recipe">
             <h1>Browse Recipes</h1>
             <div id="recipe-container"></div>
+            <div id="recipe-container"></div>
         </section>
+
+        <div>
+            <p id="NumLike52772">0</p>
+            <button id="Like52772">Like52772</button>
+            
+            <p id="NumFav52772">0</p>
+            <button id="Fav52772">Fav52772</button>
+        </div>
 
         <footer>
             <div>
@@ -52,6 +67,12 @@
 <!-- Firebase Auth Module -->
 <script type="module">
     // Import the functions you need from the SDKs you need
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getFirestore, collection, doc, getDoc, updateDoc, arrayUnion, arrayRemove }
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
     import { initializeApp }
         from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut }
@@ -96,8 +117,22 @@
         } else {
             welcomeMsg.innerHTML = "Please sign in!";
         }
+        // If the user is logged in
+        if (user) {
+            currentUser = user;
+            // Check if account data exists
+            const docRef = doc(db, "user", user.uid);
+            getDoc(docRef).then((docSnap)=>{
+                if (docSnap.exists()) username = docSnap.data()['username'];
+
+                welcomeMsg.innerHTML = "Welcome, " + username + "!";
+            });
+        } else {
+            welcomeMsg.innerHTML = "Please sign in!";
+        }
         
         // Create button based on if user is already signed in or not
+        welcomeMsg.insertAdjacentElement("afterend", createAuthButton(user));
         welcomeMsg.insertAdjacentElement("afterend", createAuthButton(user));
     });
 
