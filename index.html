@@ -5,42 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CookPAL</title>
+    <link rel="icon" href="./assets/cookpal.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
-        <nav id="navbar">
-            <img src="./assets/cookpal.png" width="10%" height="10%" class="navbar-item">
-            <div id="auth-container">
-                <div id="welcome-message" class="navbar-item"></div>
-            <div>
-        </nav>
-
-        <section id="banner">
-        </section>
-
-        <section id="browse">
-            <div class="meal-search">
-                <h1>Find Your Perfect Dish!</h1>
-                <div class="meal-search-box">
-                    <input type="text" class="search-control" placeholder="Search recipes..." id="search-input">
-                    <button type="submit" class="search-btn btn" id="search-btn">
-                        <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-                    </button>
-                </div>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="left-items">
+                <a href="#"><img src="./assets/cookpal.png" class="logo"></a>
+                <div id="saved-recipe" class="navbar-item">Saved Recipe</div>
             </div>
-        </section>
+            <div class="right-items">
+                <div id="welcome-message" class="navbar-item">Welcome</div>
+            </div>
+        </div>
+    </nav>
 
-        <section id="recipe">
-            <h1>Browse Recipes</h1>
-            <div id="recipe-container"></div>
-        </section>
 
-        <!-- <div>
+    <section id="banner">
+        <div class="banner-container">
+            <h1 class="banner__text">Recipe of the day!</h1>
+            <img id="bannerImg">
+            <div class="banner__info">
+                <h2 id="bannerRecipe">Recipe Name</h2>
+                <h3 id="bannerCategory">Recipe Category</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="browse">
+        <div class="meal-search">
+            <h1>Find Your Perfect Dish!</h1>
+            <div class="meal-search-box">
+                <input type="search" class="search-control" placeholder="Search recipes..." id="search">
+                <button type="submit" class="search-btn" id="search-btn">
+                    <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="recipe">
+        <h1>Browse Recipes</h1>
+        <div id="recipe-container"></div>
+    </section>
+
+    <!-- <div>
             <p id="NumLike52772">0</p>
             <button id="Like52772">Like52772</button>
             
@@ -48,11 +63,11 @@
             <button id="Fav52772">Fav52772</button>
         </div> -->
 
-        <footer>
-            <div>
-                <p>© CookPAL 2023. All Rights Reserved</p>
-            </div>
-        </footer>
+    <footer>
+        <div>
+            <p>© CookPAL 2023. All Rights Reserved</p>
+        </div>
+    </footer>
 </body>
 
 <script src="./js/main.js"></script>
@@ -84,7 +99,7 @@
     console.log(app);
     let currentUser = null;
     let username = "N/A";
-    
+
     let welcomeMsg = document.getElementById("welcome-message");
     onAuthStateChanged(auth, (user) => {
         // Check if button already exists and remove it
@@ -96,7 +111,7 @@
             currentUser = user;
             // Check if account data exists
             const docRef = doc(db, "user", user.uid);
-            getDoc(docRef).then((docSnap)=>{
+            getDoc(docRef).then((docSnap) => {
                 if (docSnap.exists()) username = docSnap.data()['username'];
 
                 welcomeMsg.innerHTML = "Welcome, " + username + "!";
@@ -104,7 +119,7 @@
         } else {
             welcomeMsg.innerHTML = "Please sign in!";
         }
-        
+
         // Create button based on if user is already signed in or not
         welcomeMsg.insertAdjacentElement("afterend", createAuthButton(user));
     });
@@ -126,4 +141,5 @@
     //     });
     // });
 </script>
+
 </html>
