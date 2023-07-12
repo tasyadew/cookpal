@@ -47,6 +47,9 @@ p {
     font-weight: 400;
 }
 
+b {
+    font-weight: bold;
+}
 
 
 /* NAVIGATION BAR */
@@ -150,7 +153,7 @@ footer{
 
 .form-box {
     width: 380px;
-    height: 620px;
+    height: 700px;
     position: relative;
     margin: 6% auto;
     background: #fff;
@@ -451,12 +454,36 @@ footer{
 }
 
 .search-btn:hover {
-    background: #84BD00;
+    background: #519B00;
 }
 
 .search-btn i {
     color: #fff;
 }
+
+.meal-categories {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.category-btn {
+  font-weight: bold;
+  background: #84BD00;
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  margin: 5px;
+}
+
+.category-btn:hover {
+  background: #519B00;
+}
+
+.category-btn i {
+  color: #fff;
+}
+
 
 /* RECIPE PAGE *************************/
 
@@ -552,12 +579,23 @@ footer{
     justify-content: center;
 }
 
+#bookmark-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .recipe-icon {
     margin-left: 10px;
 }
 
 .heartRed {
     color: red;
+}
+
+.bookmarkBlue {
+  color: midnightblue;
 }
 
 /* RESPONSIVENESS */

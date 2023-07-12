@@ -86,6 +86,7 @@
     const db = getFirestore(app);
     const userRef = collection(db, "user");
     console.log(app);
+    let username = null;
     onAuthStateChanged(auth, (user) => {
         // Check if user is signed in
         if (user) {
@@ -96,7 +97,30 @@
                     console.log("Account data exist!");
                     window.location.href = '../index.php';
                 } else {
-                    console.log("Account data not found");
+                    console.log("Account data not found. Creating from scratch");
+
+                    // Check if account data exists
+                    const docRef = doc(db, "user", user.uid);
+                    getDoc(docRef).then((docSnap) => {
+                        if (docSnap.exists()) {
+                            console.log("Account data already exist!");
+                        } else {
+                            let accName = null;
+                            if (username) accName = username;
+                            else if (user.displayName) accName = user.displayName;
+                            else accName = user.email.split("@")[0];
+
+                            // Initialise account data
+                            setDoc(doc(userRef, user.uid), {
+                                username: accName,
+                                favourite: [],
+                                like: []
+                            }).then(() => {
+                                alert("Account data not found! Data recreated from scratch");
+                                window.location.href = '../index.php';
+                            });
+                        }
+                    });
                 }
             });
         }
@@ -138,10 +162,10 @@
 
     //----- New Registration code start	  
     document.getElementById("registerBtn").addEventListener("click", () => {
-        var username = document.getElementById("register-username").value;
-        var email = document.getElementById("register-email").value;
-        var password = document.getElementById("register-password").value;
-        var reenterpass = document.getElementById("register-reenterpass").value;
+        username = document.getElementById("register-username").value;
+        let email = document.getElementById("register-email").value;
+        let password = document.getElementById("register-password").value;
+        let reenterpass = document.getElementById("register-reenterpass").value;
 
         // Check if password matches
         if (password != reenterpass) {
@@ -178,8 +202,8 @@
 
     //----- Login code start	  
     document.getElementById("loginBtn").addEventListener("click", () => {
-        var email = document.getElementById("login-email").value;
-        var password = document.getElementById("login-password").value;
+        let email = document.getElementById("login-email").value;
+        let password = document.getElementById("login-password").value;
 
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
