@@ -13,11 +13,14 @@
 </head>
 
 <body>
-        <nav>
-            <p id="email"></p>
+        <nav id="navbar">
+            <img src="./assets/cookpal.png" width="10%" height="10%" class="navbar-item">
+            <div id="auth-container">
+                <div id="welcome-message" class="navbar-item"></div>
+            <div>
         </nav>
-        <section id="banner">
 
+        <section id="banner">
         </section>
 
         <section id="browse">
@@ -34,27 +37,7 @@
 
         <section id="recipe">
             <h1>Browse Recipes</h1>
-
-            <!-- Recipe Card (Create 4 Featured recipe by random) -->
-            <div class="card-container">
-                <div class="card">
-                    <div class="card__img">
-                        <img src="./assets/test.jpg" alt="Avatar">
-                        <div class="icons"><i class="fa-regular fa-bookmark fa-xl"></i></div>
-                    </div>
-                    <div class="card__info">
-                        <p>Food Category</p>
-                        <h2>Recipe Name</h2>
-                        <div class="card__footer">
-                            <div class="tags">Tags</div>
-                            <div class="icons">
-                                <div><i class="fa-regular fa-comment fa-xl"></i>0</div>
-                                <div><i class="fa-regular fa-heart fa-xl"></i>0</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="recipe-container"></div>
         </section>
 
         <div>
@@ -81,7 +64,7 @@
         from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut }
         from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-    import { getFirestore, collection, doc, getDoc, arrayUnion, arrayRemove }
+    import { getFirestore, collection, doc, getDoc, updateDoc, arrayUnion, arrayRemove }
         from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
     // Your web app's Firebase configuration
@@ -94,22 +77,6 @@
         appId: "1:568342145857:web:00a747e32b4c59746b8fc0"
     };
 
-    const login = ()=>{
-        window.location.href = './pages/login.html';
-    };
-
-    const logout = ()=>{
-        signOut(auth)
-            .then(() => {
-                // User signed out successfully
-                console.log("User signed out");
-            })
-            .catch((error) => {
-                // An error occurred while signing out
-                console.log("Error signing out:", error);
-            });
-    };
-
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
@@ -118,7 +85,7 @@
     let currentUser = null;
     let username = "N/A";
     
-    let welcome = document.getElementById("welcome");
+    let welcomeMsg = document.getElementById("welcome-message");
     onAuthStateChanged(auth, (user) => {
         // Check if button already exists and remove it
         let authButton = document.getElementById("authButton");
@@ -132,47 +99,30 @@
             getDoc(docRef).then((docSnap)=>{
                 if (docSnap.exists()) username = docSnap.data()['username'];
 
-                welcome.innerHTML = "Welcome, " + username + "!";
+                welcomeMsg.innerHTML = "Welcome, " + username + "!";
             });
         } else {
-            welcome.innerHTML = "Please sign in!";
+            welcomeMsg.innerHTML = "Please sign in!";
         }
         
         // Create button based on if user is already signed in or not
-        welcome.insertAdjacentElement("afterend", createAuthButton(user));
+        welcomeMsg.insertAdjacentElement("afterend", createAuthButton(user));
     });
 
-    function createAuthButton(user){
-        let authButton = document.createElement("button");
-        authButton.id = "authButton";
-
-        if (user){
-            //<button id="authButton" onclick="logout()">Log Out</button>
-            authButton.innerHTML = "Log Out";
-            authButton.addEventListener("click", logout);
-        } else {
-            //<button id="authButton" onclick="login()">Log In</button>
-            authButton.innerHTML = "Log In";
-            authButton.addEventListener("click", login);
-        }
-
-        return authButton;
-    }
-
-    document.getElementById("Like52772").addEventListener("click", (currentUser)=>{
+    document.getElementById("Like52772").addEventListener("click", ()=>{
         // Check if already liked
         const docRef = doc(db, "user", currentUser.uid);
         getDoc(docRef).then((docSnap, docRef)=>{
-            if (docSnap.data()['like']['52772']){
-                updateDoc(docRef, {
-                    like: arrayRemove("52272")
+            if (docSnap.data()['like'].includes(52772)){
+                updateDoc(doc(db, "user", currentUser.uid), {
+                    like: arrayRemove(52772)
                 });
             } else {
-                updateDoc(docRef, {
-                    like: arrayUnion("52272")
+                updateDoc(doc(db, "user", currentUser.uid), {
+                    like: arrayUnion(52772)
                 });
             }
-            document.getElementById("NumLike52772").innerHTML = (docSnap.data()['like']['52772']);
+            document.getElementById("NumLike52772").innerHTML = (docSnap.data()['like'].includes(52772));
         });
     });
 </script>

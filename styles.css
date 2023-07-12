@@ -191,7 +191,6 @@ li a:hover {
   left: 450px;
 }
 
-
 /* RECIPE CARDS */
 
 .card-container {
@@ -330,6 +329,34 @@ li a:hover {
 
 .search-btn i{
   color: #fff;
+}
+
+/* Unsorted */
+#navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#auth-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#welcome-message {
+  margin-right: 20px;
+}
+
+#recipe-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recipe-icon {
+  margin: 10px;
 }
 
 /* RESPONSIVENESS */
