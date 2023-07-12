@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* DEFAULT */
+/* DEFAULT *************************/
 * {
   font-family: 'Poppins', sans-serif;
   /* font-family: 'Courier New', Courier, monospace; */
@@ -9,7 +9,9 @@
   color: #333;
 }
 
-body{
+body,
+ol,
+ul {
   padding: 0;
   margin: 0;
 }
@@ -22,26 +24,49 @@ h1 {
   font-family: 'Poppins', sans-serif;
   color: #000;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 h2 {
   font-family: 'Poppins', sans-serif;
   color: #000;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 h3 {
   font-family: 'Poppins', sans-serif;
   color: #000;
   font-weight: 500;
+  font-size: 1.5rem;
 }
 
 p {
   font-family: 'Poppins', sans-serif;
   color: #000;
   font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 32px;
+  background: linear-gradient(to right, #84BD00, #C4D600);
+  box-shadow: 0 0 2px 2px rgba(196, 214, 0, 0.5);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+  padding: 10px 32px;
+  background: #333;
+  box-shadow: 0 0 2px 2px rgba(3, 3, 3, 0.5);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
 }
 
 /* NAVIGATION BAR */
@@ -98,26 +123,19 @@ p {
   padding: 5px 10px;
 }
 
-/* #authButton{
-  cursor: pointer;
-  padding: 10px 32px;
-  background: linear-gradient(to right, #84BD00, #C4D600);
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
+
+
+/* FOOTER */
+footer{
+  background-color: #84BD00;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#authButton:hover{
-  cursor: pointer;
-  padding: 10px 32px;
-  background: #333;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-} */
-
+/* HOME PAGE *************************/
 
 /* FORM BOX */
 
@@ -248,12 +266,12 @@ p {
 .banner-container{
   cursor: pointer;
   position: relative;
-  text-align: center;
-  height: 40vh;;
+  text-align: left;
+  height: 44vh;
+  margin-top: 40px;
 }
 
 .banner-container img{
-  margin-top: 40px;
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -262,7 +280,7 @@ p {
 
 .banner__text{
   position: absolute;
-  top: 16%;
+  top: 4%;
   left: -4%;
   background: linear-gradient(to right, #84BD00, #C4D600);
   box-shadow: 0 0 2px 2px rgba(196, 214, 0, 0.5);
@@ -277,11 +295,14 @@ p {
   left: 0;
   background: rgba(0, 0, 0, 0.2);
   padding: 10px 50px;
+  border-bottom-left-radius: 20px;
 }
 
 .banner__info h2,
 .banner__info h3
 {
+  margin-top: 0;
+  margin-bottom: 5px;
   color: #fff;
 }
 
@@ -429,14 +450,84 @@ p {
   color: #fff;
 }
 
-/* FOOTER */
-footer{
-  background-color: #84BD00;
+/* RECIPE PAGE *************************/
+
+/* HERO SECTION */
+#hero{
+  padding: 0;
+  margin: 0;
+}
+
+.hero-container{
+  cursor: pointer;
+  position: relative;
+  text-align: left;
+  height: 60vh;
+}
+
+.hero-container img{
   width: 100%;
-  height: 160px;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RECIPE CONTENT SECTION */
+
+.recipe__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-wrapper {
   display: flex;
   align-items: center;
+  
+}
+
+.title-wrapper h1{
+  margin: 0;
+  margin-right: 16px;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon-counter{
+  margin-left: 8px;
+  font-size: 2rem;
+}
+
+.heart-icon,
+.comment-icon {
+  margin-top: 16px;
+  margin-right: 32px; 
+}
+
+.video-wrapper{
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.video-wrapper iframe{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.recipe__ing,
+.recipe__ins,
+.recipe__video,
+.recipe__more {
+  margin-top: 64px;
+}
+
+.recipe__more{
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 
