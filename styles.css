@@ -292,6 +292,7 @@ footer{
   padding: 10px 50px;
   color: #fff;
   border-radius: 5px;
+  pointer-events: none;
 }
 
 .banner__info{
@@ -301,6 +302,7 @@ footer{
   background: rgba(0, 0, 0, 0.2);
   padding: 10px 50px;
   border-bottom-left-radius: 20px;
+  pointer-events: none;
 }
 
 .banner__info h2,

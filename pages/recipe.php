@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,7 +88,16 @@
             <p>© CookPAL 2023. All Rights Reserved</p>
         </div>
     </footer>
-
 </body>
+
+<script>
+    let mealID = <?php 
+        //Using GET
+        if (isset($_GET['mealID'])) echo $_GET['mealID'];
+        else echo "null";
+    ?>;
+
+    if (!mealID) window.location.href="../index.php";
+</script>
 
 </html>
