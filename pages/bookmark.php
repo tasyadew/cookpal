@@ -89,6 +89,12 @@
         const userRef = doc(db, "user", user.uid);
         getDoc(userRef).then((userSnap) => {
             let bmArr = userSnap.data()['favourite'];
+            if (bmArr.length == 0){
+                let element = document.createElement("h2");
+                element.innerHTML = "No saved recipe :(";
+                document.getElementById("bookmark-container").insertAdjacentElement("beforeend", element);
+            }
+
             for (let i=0; i<bmArr.length; i++){
                 fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+bmArr[i])
                     .then(response => response.json())
@@ -96,11 +102,7 @@
                         let n = 0;
                         if (json.meals != null) n = Object.keys(json.meals).length;
 
-                        if (n == 0) {
-                            let element = document.createElement("h2");
-                            element.innerHTML = "No recipe found :(";
-                            document.getElementById("bookmark-container").insertAdjacentElement("beforeend", element);
-                        } else {
+                        if (n > 0) {
                             let meal = json.meals[0];
                             const docRef = doc(db, "recipe", meal.idMeal.toString());
                             getDoc(docRef).then((docSnap) => {
@@ -158,10 +160,10 @@
         return authButton;
     }
 
-    let solidHeart = "recipe-icon fa-solid fa-heart fa-xl heartRed";
-    let emptyHeart = "recipe-icon fa-regular fa-heart fa-xl";
-    let solidBookmark = "fa-solid fa-bookmark fa-xl bookmarkBlue";
-    let emptyBookmark = "fa-regular fa-bookmark fa-xl";
+    let solidHeart = "icon recipe-icon fa-solid fa-heart fa-xl heartRed";
+    let emptyHeart = "icon recipe-icon fa-regular fa-heart fa-xl";
+    let solidBookmark = "icon fa-solid fa-bookmark fa-xl bookmarkBlue";
+    let emptyBookmark = "icon fa-regular fa-bookmark fa-xl";
     function updateIconClassName (icon, listName, user, mealID) {
         function updateIcon(icon, listName, isSolid){
             if (listName=="like"){
@@ -237,6 +239,12 @@
                 favourite: arrayRemove(mealID)
             }).then(()=>{
                 cardContainer.remove();
+
+                if (document.getElementById("bookmark-container").innerHTML == ""){
+                    let element = document.createElement("h2");
+                    element.innerHTML = "No saved recipe :(";
+                    document.getElementById("bookmark-container").insertAdjacentElement("beforeend", element);
+                }
             });
             event.stopPropagation();
         });

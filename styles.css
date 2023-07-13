@@ -260,6 +260,7 @@ footer{
 
 .check-box {
     margin-top: 16px;
+    cursor: pointer;
 }
 
 #login-form {
@@ -451,10 +452,12 @@ footer{
     border: none;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    cursor: pointer;
 }
 
 .search-btn:hover {
     background: #519B00;
+
 }
 
 .search-btn i {
@@ -474,6 +477,8 @@ footer{
   border: none;
   border-radius: 2rem;
   margin: 5px;
+  cursor: pointer;
+  padding: 4px 16px;
 }
 
 .category-btn:hover {
@@ -579,6 +584,10 @@ footer{
     justify-content: center;
 }
 
+#bookmark{
+  min-height: 70vh;
+}
+
 #bookmark-container {
   display: flex;
   flex-direction: row;
@@ -596,6 +605,10 @@ footer{
 
 .bookmarkBlue {
   color: midnightblue;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 /* RESPONSIVENESS */

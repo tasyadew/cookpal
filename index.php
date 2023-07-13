@@ -210,10 +210,10 @@
     }
 
     // Update icon to solid based on like/fav
-    let solidHeart = "recipe-icon fa-solid fa-heart fa-xl heartRed";
-    let emptyHeart = "recipe-icon fa-regular fa-heart fa-xl";
-    let solidBookmark = "fa-solid fa-bookmark fa-xl bookmarkBlue";
-    let emptyBookmark = "fa-regular fa-bookmark fa-xl";
+    let solidHeart = "icon recipe-icon fa-solid fa-heart fa-xl heartRed";
+    let emptyHeart = "icon recipe-icon fa-regular fa-heart fa-xl";
+    let solidBookmark = "icon fa-solid fa-bookmark fa-xl bookmarkBlue";
+    let emptyBookmark = "icon fa-regular fa-bookmark fa-xl";
     function updateIconClassName (icon, listName, user, mealID) {
         function updateIcon(icon, listName, isSolid){
             if (listName=="like"){

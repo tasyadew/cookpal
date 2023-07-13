@@ -196,10 +196,10 @@
         return authButton;
     }
 
-    let solidHeart = "recipe-icon fa-solid fa-heart fa-2xl heartRed";
-    let emptyHeart = "recipe-icon fa-regular fa-heart fa-2xl";
-    let solidBookmark = "fa-solid fa-bookmark fa-2xl bookmarkBlue";
-    let emptyBookmark = "fa-regular fa-bookmark fa-2xl";
+    let solidHeart = "icon recipe-icon fa-solid fa-heart fa-2xl heartRed";
+    let emptyHeart = "icon recipe-icon fa-regular fa-heart fa-2xl";
+    let solidBookmark = "icon fa-solid fa-bookmark fa-2xl bookmarkBlue";
+    let emptyBookmark = "icon fa-regular fa-bookmark fa-2xl";
     function updateIconClassName (icon, listName, user, mealID) {
         function updateIcon(icon, listName, isSolid){
             if (listName=="like"){
